@@ -18,6 +18,8 @@ import java.text.BreakIterator;
 
 class MyTask extends AsyncTask<Integer, Integer, String> {
 
+    private static final String TAG = "MyTask";
+
     public static JSONObject getJSONObjectFromURL(String urlString) throws IOException, JSONException {
 
         HttpURLConnection urlConnection = null;
@@ -31,14 +33,18 @@ class MyTask extends AsyncTask<Integer, Integer, String> {
         urlConnection.setConnectTimeout(15000 /* milliseconds */);
 
         urlConnection.setDoOutput(true);
+        String jsonString = new String();
 
-        urlConnection.connect();
+        try
+        {
+            urlConnection.connect();
+
 
         BufferedReader br=new BufferedReader(new InputStreamReader(url.openStream()));
 
+
         char[] buffer = new char[1024];
 
-        String jsonString = new String();
 
         StringBuilder sb = new StringBuilder();
         String line;
@@ -52,7 +58,16 @@ class MyTask extends AsyncTask<Integer, Integer, String> {
         System.out.println("JSON: " + jsonString);
         urlConnection.disconnect();
 
+        Log.d("Get BMW data", "doInBackground: " + jsonString);
+
+        }
+        catch (Exception e)
+        {
+            Log.d(TAG, "getJSONObjectFromURL: " + e.toString());
+        }
+
         return new JSONObject(jsonString);
+
 
     }
     @Override

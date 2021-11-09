@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         try {
-            MyTask.getJSONObjectFromURL("http://localsearch.azurewebsites.net/api/Locations");
+            MyTask.getJSONObjectFromURL("https://localsearch.azurewebsites.net/api/Locations");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
