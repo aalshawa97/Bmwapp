@@ -9,6 +9,9 @@ import com.example.bmwapp.data.LocationPojo;
 import com.example.bmwapp.data.remote.ApiClient;
 import com.example.bmwapp.data.remote.ApiInterface;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -18,10 +21,18 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     static  String TAG = MainActivity.class.getSimpleName();
+    //http://localsearch.azurewebsites.net/api/Locations
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            MyTask.getJSONObjectFromURL("http://localsearch.azurewebsites.net/api/Locations");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
