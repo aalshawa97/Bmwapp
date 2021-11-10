@@ -26,6 +26,7 @@ class MyTask extends AsyncTask<Integer, Integer, String> {
 
         URL url = new URL(urlString);
 
+
         urlConnection = (HttpURLConnection) url.openConnection();
 
         urlConnection.setRequestMethod("GET");
@@ -38,27 +39,26 @@ class MyTask extends AsyncTask<Integer, Integer, String> {
         try
         {
             urlConnection.connect();
+            Log.d(TAG, "getJSONObjectFromURL: " + urlConnection.getResponseCode());
+
+            BufferedReader br=new BufferedReader(new InputStreamReader(url.openStream()));
+
+            char[] buffer = new char[1024];
 
 
-        BufferedReader br=new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line+"\n");
+            }
+            br.close();
 
+            jsonString = sb.toString();
 
-        char[] buffer = new char[1024];
+            System.out.println("JSON: " + jsonString);
+            urlConnection.disconnect();
 
-
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = br.readLine()) != null) {
-            sb.append(line+"\n");
-        }
-        br.close();
-
-        jsonString = sb.toString();
-
-        System.out.println("JSON: " + jsonString);
-        urlConnection.disconnect();
-
-        Log.d("Get BMW data", "doInBackground: " + jsonString);
+            Log.d("Get BMW data", "doInBackground: " + jsonString);
 
         }
         catch (Exception e)
