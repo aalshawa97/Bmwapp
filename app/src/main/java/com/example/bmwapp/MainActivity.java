@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -62,6 +63,22 @@ public class MainActivity extends AppCompatActivity {
 
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
+        sw_gps.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                 if(sw_gps.isChecked())
+                 {
+                     //Most accurate - use GPS
+                     locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+                     tv_sensor.setText("Using GPS sensors");
+                 }
+                 else
+                 {  locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                    tv_sensor.setText("Using towers + WIFI");
+                 }
+            }
+        });
         try {
             MyTask.getJSONObjectFromURL("https://localsearch.azurewebsites.net/api/Locations");
         } catch (IOException e) {
