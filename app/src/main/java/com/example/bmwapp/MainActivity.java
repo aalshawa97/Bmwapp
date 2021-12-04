@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         //How often does the location check occur when set to the most frequent update?
         locationRequest.setFastestInterval(1000 * 5);
 
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
         try {
             MyTask.getJSONObjectFromURL("https://localsearch.azurewebsites.net/api/Locations");
         } catch (IOException e) {
