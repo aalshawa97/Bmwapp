@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        updateGPS();
         try {
             MyTask.getJSONObjectFromURL("https://localsearch.azurewebsites.net/api/Locations");
         } catch (IOException e) {
@@ -108,11 +109,11 @@ public class MainActivity extends AppCompatActivity {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             //User provided the permission
-            fusedLocationProviderClient.getLastLocation().addOnSuccessListener((Executor) this, new OnSuccessListener<Location>() {
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
                     //We got permissions. Put the values of location. XXX into the UI components
-
+                    updateUIValue(location);
                 }
             });
         }
@@ -165,5 +166,27 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void updateUIValue(Location location){
+        //Update all of the text view objects with a new location.
+        tv_lat.setText(String.valueOf(location.getLatitude()));
+        tv_lon.setText(String.valueOf(location.getLongitude()));
+        tv_accuracy.setText(String.valueOf(location.getAccuracy()));
+
+        if(location.hasAltitude()){
+            tv_altitude.setText(String.valueOf(location.getAltitude()));
+        }
+        else{
+            tv_altitude.setText("Not available");
+        }
+        if(location.hasSpeed())
+        {
+            tv_speed.setText(String.valueOf(location.getSpeed()));
+        }
+        else
+        {
+            tv_speed.setText("Not available");
+        }
     }
 }
