@@ -106,7 +106,7 @@
         android:id="@+id/tv_sensor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cell Tower + Wifi"
+        android:text="@string/sensorValues"
         app:layout_constraintStart_toEndOf="@+id/tv_labelsensor"
         app:layout_constraintTop_toTopOf="@+id/tv_labelsensor" />
 
@@ -114,7 +114,7 @@
         android:id="@+id/tv_labelupdates"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Updates:"
+        android:text="@string/sensorValues"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sw_locationsupdates" />
 
@@ -122,7 +122,7 @@
         android:id="@+id/tv_updates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Off"
+        android:text="@string/off"
         app:layout_constraintStart_toEndOf="@+id/tv_labelupdates"
         app:layout_constraintTop_toTopOf="@+id/tv_labelupdates" />
 
@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:checked="true"
-        android:text="Location Updates"
+        android:text="@string/locationUpdates"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
@@ -142,7 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="GPS/SavePower"
+        android:text="@string/gps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_labelupdates" />
