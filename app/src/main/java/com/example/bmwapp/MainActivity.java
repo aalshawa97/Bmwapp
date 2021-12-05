@@ -1,10 +1,13 @@
 package com.example.bmwapp;
 
+import static java.lang.String.valueOf;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.PendingIntent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -19,7 +22,10 @@ import com.example.bmwapp.data.LocationPojo;
 import com.example.bmwapp.data.remote.ApiClient;
 import com.example.bmwapp.data.remote.ApiInterface;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -36,6 +42,9 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_UPGRADE_INTERVAL = 30;
+    public LocationCallback locationCallBack;
+    public LocationRequest locationRequest;
+    public PendingIntent pendingIntent;
     public static final int FAST_UPDATE_INTERVAL = 5;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     TextView tv_lat, tv_lon, tv_altitude, tv_accuracy, tv_speed, tv_sensor, tv_updates, tv_address;
@@ -51,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         //Give each UI variable a value
         tv_lat = findViewById(R.id.tv_lat);
         tv_lon = findViewById(R.id.tv_lon);
@@ -74,6 +83,23 @@ public class MainActivity extends AppCompatActivity {
 
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
+        //Event that is triggered whenever the update interval is met
+        locationCallBack = new LocationCallback() {
+            @Override
+            public void onLocationAvailability(@NonNull LocationAvailability locationAvailability) {
+                super.onLocationAvailability(locationAvailability);
+            }
+
+            @Override
+            public void onLocationResult(@NonNull LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                //Save the location
+                Location location = locationResult.getLastLocation();
+                updateUIValue(locationResult.getLastLocation());
+            }
+        };
+
         sw_gps.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -91,6 +117,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        sw_locationUpdates.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                //Turn on location tracking
+                if(sw_locationUpdates.isChecked()){
+                    startLocationUpdates();
+                }
+                else
+                {
+                    //Turn off tracking
+                    stopLocationUpdates();
+                }
+            }
+        });
+
         updateGPS();
         try {
             MyTask.getJSONObjectFromURL("https://localsearch.azurewebsites.net/api/Locations");
@@ -101,6 +143,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    private void startLocationUpdates() {
+        tv_updates.setText("Location is being tracked.");
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallBack, null);
+        updateGPS();
+    }
+
+    private void stopLocationUpdates() {
+        tv_updates.setText("Location is not being tracked.");
+        tv_lat.setText("Location is not being tracked.");
+        tv_lon.setText("Location is not being tracked.");
+        tv_speed.setText("Location is not being tracked.");
+        tv_address.setText("Location is not being tracked.");
+        tv_altitude.setText("Location is not being tracked.");
+        tv_sensor.setText("Location is not being tracked.");
+        fusedLocationProviderClient.requestLocationUpdates(null, locationCallBack, null);
+
+    }
+
     //End onCreate method
     private void updateGPS(){
         //Get permissions from the user to track GPS
@@ -170,23 +231,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUIValue(Location location){
         //Update all of the text view objects with a new location.
-        tv_lat.setText(String.valueOf(location.getLatitude()));
-        tv_lon.setText(String.valueOf(location.getLongitude()));
-        tv_accuracy.setText(String.valueOf(location.getAccuracy()));
-
-        if(location.hasAltitude()){
-            tv_altitude.setText(String.valueOf(location.getAltitude()));
+        try{
+            tv_lat.setText(String.valueOf(location.getLatitude()));
+            tv_lon.setText(String.valueOf(location.getLongitude()));
+            tv_accuracy.setText(String.valueOf(location.getAccuracy()));
+            if(location.hasAltitude()){
+                tv_altitude.setText(String.valueOf(location.getAltitude()));
+            }
+            else{
+                tv_altitude.setText("Not available");
+            }
+            if(location.hasSpeed())
+            {
+                tv_speed.setText(String.valueOf(location.getSpeed()));
+            }
+            else
+            {
+                tv_speed.setText("Not available");
+            }
         }
-        else{
-            tv_altitude.setText("Not available");
-        }
-        if(location.hasSpeed())
+        catch (Exception e)
         {
-            tv_speed.setText(String.valueOf(location.getSpeed()));
-        }
-        else
-        {
-            tv_speed.setText("Not available");
+            
         }
     }
 }
