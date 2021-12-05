@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">Bmwapp</string>
+    <string name="app_name">BmwApp</string>
+    <string name="latitude">Lat: </string>
+    <string name="longitude">Lon: </string>
+    <string name="accuracy">Accuracy: </string>
+    <string name="speed">Speed: </string>
+    <string name="wayPoints">Way points: </string>
+    <string name="altitude">Altitude: </string>
+    <string name="address">Address: </string>
+    <string name="sensor">Sensor</string>
+    <string name="gps">GPS/SavePower</string>
+    <string name="updates">Updates</string>
+    <string name="locationUpdates">Location updates</string>
+    <string name="latitudeValue">0.0</string>
+    <string name="longitudeValue">0.0</string>
+    <string name="altitudeValue">0.0</string>
+    <string name="wayPointValue">0.0</string>
+    <string name="accuracyValue">0.0</string>
+    <string name="speedValue">0.0</string>
+    <string name="off">Off</string>
+    <string name="sensorValues">Sensor values: Cell Tower + Wifi</string>
 </resources>

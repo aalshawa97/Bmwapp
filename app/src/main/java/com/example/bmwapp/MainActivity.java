@@ -4,6 +4,7 @@ import static java.lang.String.valueOf;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int FAST_UPDATE_INTERVAL = 5;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     TextView tv_lat, tv_lon, tv_altitude, tv_accuracy, tv_speed, tv_sensor, tv_updates, tv_address;
-    Switch sw_locationUpdates, sw_gps;
+    SwitchCompat sw_locationUpdates, sw_gps;
     FusedLocationProviderClient fusedLocationProviderClient;
 
     //Variable to remember if we are tracking location or not.
@@ -262,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
         }
         catch (Exception e)
         {
-
+            Log.d("Failed in OnCreate", "Update UI values not set");
         }
     }
 }
