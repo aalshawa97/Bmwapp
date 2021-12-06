@@ -123,8 +123,15 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-               // Intent i = new Intent(MainActivity.this, MapsActivity.class);
-                // startActivity(i);
+                try {
+                    Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                    startActivity(i);
+                }
+                catch (Exception e)
+                {
+
+                }
+
             }
         });
 
