@@ -21,7 +21,7 @@ public class ShowSavedLocationsList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_saved_locations_list);
         lv_savedLocations = findViewById(R.id.lv_waypoints);
-        //Application myApplication = (Application) ;
+        //MyApplication myApplication = (Application)getApplicationContext();
         //MyApplication myApplication = (MyApplication) getApplicationContext();
         //List<Location> savedLocations = MyApplication.getMyLocations();
         lv_savedLocations.setAdapter(new ArrayAdapter<Location>(lv_savedLocations.getContext(), android.R.layout.simple_list_item_1));

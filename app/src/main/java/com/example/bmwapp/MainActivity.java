@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
-
+import android.content.Intent;
 import android.Manifest;
 import android.app.PendingIntent;
 import android.content.pm.PackageManager;
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_UPGRADE_INTERVAL = 30;
     private Button btn_newWaypoint;
+    private Button btn_showMap;
     //public static final Bu btn_newWaypoint = null
     public LocationCallback locationCallBack;
     public LocationRequest locationRequest;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         tv_sensor = findViewById(R.id.tv_sensor);
         tv_updates = findViewById(R.id.tv_updates);
         tv_address = findViewById(R.id.tv_address);
+        btn_showMap = findViewById(R.id.btnShowMap);
         sw_gps = findViewById(R.id.sw_gps);
         sw_locationUpdates = findViewById(R.id.sw_locationsupdates);
 
@@ -106,7 +108,15 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        //btn_newWaypoint.setOnClickListener()
+        btn_showMap.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(i);
+            }
+        });
+
 
         sw_gps.setOnClickListener(new View.OnClickListener(){
 
