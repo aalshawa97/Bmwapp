@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +46,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_UPGRADE_INTERVAL = 30;
-    private TextView btn_newWaypoint;
+    private Button btn_newWaypoint;
     //public static final Bu btn_newWaypoint = null
     public LocationCallback locationCallBack;
     public LocationRequest locationRequest;
@@ -104,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 updateUIValue(locationResult.getLastLocation());
             }
         };
+
+        //btn_newWaypoint.setOnClickListener()
 
         sw_gps.setOnClickListener(new View.OnClickListener(){
 

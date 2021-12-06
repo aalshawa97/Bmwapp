@@ -5,6 +5,8 @@
     <string name="accuracy">Accuracy: </string>
     <string name="speed">Speed: </string>
     <string name="wayPoints">Way points: </string>
+    <string name="newWayPoint">New way point: </string>
+    <string name="showWayPoints">Show way points: </string>
     <string name="altitude">Altitude: </string>
     <string name="address">Address: </string>
     <string name="sensor">Sensor</string>
