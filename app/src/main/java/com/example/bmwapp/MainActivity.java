@@ -108,12 +108,23 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        /*
+        btn_newWaypoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Get the GPS location
+                //Add the new location to the global list
+
+            }
+        });
+        */
+
         btn_showMap.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(i);
+               // Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                // startActivity(i);
             }
         });
 
