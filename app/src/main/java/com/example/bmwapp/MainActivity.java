@@ -45,6 +45,8 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_UPGRADE_INTERVAL = 30;
+    private TextView btn_newWaypoint;
+    //public static final Bu btn_newWaypoint = null
     public LocationCallback locationCallBack;
     public LocationRequest locationRequest;
     public PendingIntent pendingIntent;

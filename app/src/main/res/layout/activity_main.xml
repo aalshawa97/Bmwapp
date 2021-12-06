@@ -172,4 +172,20 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_address"
         tools:layout_editor_absoluteX="1dp" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="399dp"
+        android:layout_height="47dp"
+        android:text="New Waypoint"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="451dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="399dp"
+        android:layout_height="47dp"
+        android:text="Show Waypoint list"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="529dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
