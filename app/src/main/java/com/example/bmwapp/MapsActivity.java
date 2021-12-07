@@ -66,10 +66,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     markerOptions.position(latLng);
                     markerOptions.title("Lat:" + location.getLatitude() + " Lon:" + location.getLongitude());
                     mMap.addMarker(markerOptions);
-                    LatLng lastLocationPlaces = latLng;
 
-                    LatLng lastLocationPlaced = latLng;
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLocationPlaced, 12.0f));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
                     mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(@NonNull Marker marker) {
