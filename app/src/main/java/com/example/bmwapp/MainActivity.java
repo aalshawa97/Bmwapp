@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public PendingIntent pendingIntent;
     public static final int FAST_UPDATE_INTERVAL = 5;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
-    TextView tv_lat, tv_lon, tv_altitude, tv_accuracy, tv_speed, tv_sensor, tv_updates, tv_address;
+    TextView tv_waypointCounts, tv_lat, tv_lon, tv_altitude, tv_accuracy, tv_speed, tv_sensor, tv_updates, tv_address;
     SwitchCompat sw_locationUpdates, sw_gps;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         tv_sensor = findViewById(R.id.tv_sensor);
         tv_updates = findViewById(R.id.tv_updates);
         tv_address = findViewById(R.id.tv_address);
+        tv_waypointCounts = findViewById(R.id.tv_count);
         btn_showMap = findViewById(R.id.btnShowMap);
         sw_gps = findViewById(R.id.sw_gps);
         sw_locationUpdates = findViewById(R.id.sw_locationsupdates);
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 catch (Exception e)
                 {
-
+                    Log.d(TAG, "onClick: problem with show map");
                 }
 
             }
@@ -275,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_altitude.setText(String.valueOf(location.getAltitude()));
             }
             else{
-                tv_altitude.setText("Not available");
+                tv_altitude.setText("@string/not_available");
             }
             if(location.hasSpeed())
             {

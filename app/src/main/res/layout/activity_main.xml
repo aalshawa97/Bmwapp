@@ -216,4 +216,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wayPointValue"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="696dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
