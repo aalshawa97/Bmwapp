@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BmwApp</string>
+    <string name="appName">BmwApp</string>
     <string name="latitude">Lat: </string>
     <string name="longitude">Lon: </string>
     <string name="showMap">Show map </string>
@@ -22,7 +22,7 @@
     <string name="speedValue">0.0</string>
     <string name="off">Off</string>
     <string name="sensorValues">Sensor values: Cell Tower + Wifi</string>
-    <string name="title_activity_maps">MapsActivity</string>
-    <string name="not_available">Not available</string>
-    <string name="unable_to_get_street">Unable to get street address</string>
+    <string name="titleActivityMaps">MapsActivity</string>
+    <string name="notAvailable">Not available</string>
+    <string name="unableToGetStreet">Unable to get street address</string>
 </resources>
