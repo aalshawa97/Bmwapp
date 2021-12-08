@@ -2,6 +2,7 @@
     <string name="app_name">BmwApp</string>
     <string name="latitude">Lat: </string>
     <string name="longitude">Lon: </string>
+    <string name="showMap">Show map </string>
     <string name="accuracy">Accuracy: </string>
     <string name="speed">Speed: </string>
     <string name="wayPoints">Way points: </string>
