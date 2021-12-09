@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bmwapp.data.LocationPojo;
+import com.example.bmwapp.data.MyApplication;
 import com.example.bmwapp.data.remote.ApiClient;
 import com.example.bmwapp.data.remote.ApiInterface;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Give each UI variable a value
+        btn_newWaypoint = findViewById(R.id.btnWayPoint);
         tv_lat = findViewById(R.id.tv_lat);
         tv_lon = findViewById(R.id.tv_lon);
         tv_altitude = findViewById(R.id.tv_altitude);
@@ -109,16 +111,16 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        /*
+
         btn_newWaypoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Get the GPS location
                 //Add the new location to the global list
-
+                //MyApplication myApplication = (MyApplication) getApplicationContext();
             }
         });
-        */
+
 
         btn_showMap.setOnClickListener(new View.OnClickListener(){
 
