@@ -47,6 +47,9 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static final int DEFAULT_UPGRADE_INTERVAL = 30;
+    List<Location> savedLocations;
+    //Current location
+    Location currentLocation;
     private Button btn_newWaypoint;
     private Button btn_showMap;
     //public static final Bu btn_newWaypoint = null
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         tv_waypointCounts = findViewById(R.id.tv_count);
         btn_showMap = findViewById(R.id.btnShowMap);
         sw_gps = findViewById(R.id.sw_gps);
+        //R.id.sw_locationsupdates
         sw_locationUpdates = findViewById(R.id.sw_locationsupdates);
 
         //Set all properties of LocationRequest
@@ -117,7 +121,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Get the GPS location
                 //Add the new location to the global list
-                //MyApplication myApplication = (MyApplication) getApplicationContext();
+                MyApplication myApplication = (MyApplication) getApplicationContext();
+                savedLocations = myApplication.getMyLocations();
+                savedLocations.add(currentLocation);
             }
         });
 
@@ -214,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onSuccess(Location location) {
                     //We got permissions. Put the values of location. XXX into the UI components
                     updateUIValue(location);
+                    currentLocation = location;
                 }
             });
         }
@@ -296,6 +303,12 @@ public class MainActivity extends AppCompatActivity {
             catch(Exception e){
                 tv_address.setText("Unable to get street address");
             }
+
+            MyApplication myApplication = (MyApplication) getApplicationContext();
+            savedLocations = myApplication.getMyLocations();
+
+            //Show the number of waypoints saved.
+            tv_waypointCounts.setText(Integer.toString(savedLocations.size()));
         }
         catch (Exception e)
         {
